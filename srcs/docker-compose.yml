@@ -1,17 +1,17 @@
 version: "3"
 services:
     web:
+        image: nginx:inc
         build:
-            context: .
-            dockerfile: Dockerfile.nginx
+            context: ./requirements/nginx
+            dockerfile: Dockerfile
         ports:
             - 80:80
             - 443:443
-        networks:
-            - my-network
+#        networks:
+#            - my-network
 #        container_name: nginx
 #        restart: always
-#        image: nginx
 
 #    wordpress_php:
 #        build: ./wordpress
@@ -20,8 +20,8 @@ services:
 #        networks:
 #            - my-network
 
-networks:
-    my-network:
+#networks:
+#    my-network:
 #
 #        volumes:
 #            - ./src:/usr/share/nginx/html

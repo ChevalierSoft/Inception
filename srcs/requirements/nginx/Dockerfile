@@ -1,11 +1,14 @@
-FROM alpine:3.14
+FROM debian:buster
 
-RUN apk update \
-	&& apk add nginx && mkdir -p /run/nginx \
-	&& mkdir -p /var/www/my_server \
-	&& apk add openssl \
-	&& apk add openssh-server \
-	&& rm -rf /var/cache/apk/*
+#FROM alpine:3.14
+
+RUN apt-get update
+RUN	apt-get install nginx -y
+RUN mkdir -p /run/nginx
+RUN mkdir -p /var/www/my_server
+#RUN apt-get insatll openssl
+#RUN apt-get insatll openssh-server -y
+RUN rm -rf /var/cache/apk/*
 
 # nginx config
 COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
@@ -24,4 +27,4 @@ COPY ./conf/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 # CMD nginx && ash
 CMD nginx -g 'daemon off;'
 
-EXPOSE 80 443
+EXPOSE 443

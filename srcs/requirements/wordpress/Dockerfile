@@ -1,25 +1,28 @@
-FROM alpine:3.14
+FROM debian:buster
 
-RUN	apk update
-RUN apk add nginx
 RUN mkdir -p /run/nginx
 RUN mkdir -p /var/www/my_server
-RUN	apk add php7
-RUN apk add php7-fpm
-RUN apk add php7-mysqli
-RUN apk add php7-curl
-RUN apk add php7-json
-RUN apk add php7-session
-RUN apk add php7-bz2
-RUN apk add php7-xml
-RUN apk add php7-iconv
-RUN apk add php7-mbstring
-RUN apk add php7-opcache
-RUN apk add php7-gd
-RUN apk add php7-zlib
-RUN	apk add gettext
-RUN apk add wget
-RUN	rm -rf /var/cache/apk/*
+
+RUN	apt update
+	&& php7 \
+	&& php7-fpm \
+	&& php7-mysqli \
+	&& php7-curl \
+	&& php7-json \
+	&& php7-session \
+	&& php7-bz2 \
+	&& php7-xml \
+	&& php7-iconv \
+	&& php7-mbstring \
+	&& php7-opcache \
+	&& php7-gd \
+	&& php7-zlib \
+	&& gettext \
+	&& wget \
+	&& vim \
+	&& rm -rf /var/cache/apk/*
+
+# &&	apt-get install -y nginx \
 
 # nginx config
 COPY ./srcs/nginx.conf /etc/nginx/conf.d/default.conf
@@ -49,4 +52,4 @@ CMD /tmp/startup-script.sh
 # CMD envsubst '$MYSQL_DB_NAME $MYSQL_USER $MYSQL_USER_PASSWORD' < /tmp/wp-config.php > /var/www/html/wp-config.php \
 # 	&& php-fpm7 && nginx -g "daemon off;" && tail -f /dev/null
 
-EXPOSE 9000
+EXPOSE 9000 80

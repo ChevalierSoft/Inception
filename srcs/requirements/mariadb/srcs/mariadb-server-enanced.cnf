@@ -1,0 +1,8 @@
+
+[mysqld] # server daemon options
+# get enanced logs about the databases
+log-bin=bin_log
+# the file name will be :
+log-basename=mysql_log
+# init mysql_log.log file by checking the logs
+general_log

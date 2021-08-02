@@ -6,10 +6,28 @@
 #    By: dait-atm <dait-atm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/02 16:21:29 by dait-atm          #+#    #+#              #
-#    Updated: 2021/08/02 16:22:40 by dait-atm         ###   ########.fr        #
+#    Updated: 2021/08/02 17:08:02 by dait-atm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# install docker + dependencies
+NAME	= Inception
 
-# docker-compose ./srcs/ up -d
+all:
+	docker-compose -f ./srcs/docker-compose.yml up -d
+
+$(NAME): all
+
+# install docker + dependencies
+install:
+
+stop:
+	docker-compose -f ./srcs/docker-compose.yml down
+
+clean:
+	docker images prune
+	docker container prune
+	docker netword prune
+
+fclean: clean
+
+.PHONY: all $(NAME) install clean fclean

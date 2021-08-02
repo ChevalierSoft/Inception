@@ -1,17 +1,15 @@
-		if (
-			(int)((*a)->content)
-			< limit
-			)
-		if (
-			(int)((*a)->content)
-			< limit
-			)
-		if (
-			(int)((*a)->content)
-			< limit
-			)
-		if (
-			(int)((*a)->content)
-			< limit
-			)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dait-atm <dait-atm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/08/02 16:21:29 by dait-atm          #+#    #+#              #
+#    Updated: 2021/08/02 16:22:40 by dait-atm         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+# install docker + dependencies
+
+# docker-compose ./srcs/ up -d

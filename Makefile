@@ -6,7 +6,7 @@
 #    By: dait-atm <dait-atm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/02 16:21:29 by dait-atm          #+#    #+#              #
-#    Updated: 2021/08/02 17:08:02 by dait-atm         ###   ########.fr        #
+#    Updated: 2021/08/02 17:25:17 by dait-atm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ stop:
 clean:
 	docker images prune
 	docker container prune
-	docker netword prune
+	docker network prune
 
 fclean: clean
 

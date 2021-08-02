@@ -16,6 +16,7 @@ COPY ./conf/index.html /var/www/my_server/
 
 # ssl
 RUN mkdir -p /etc/ssl/private/
+RUN mkdir -p /etc/ssl/certs/
 
 COPY ./conf/selfsigned-nginx.crt /etc/ssl/certs/
 COPY ./conf/selfsigned-nginx.key /etc/ssl/private/

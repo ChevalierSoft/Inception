@@ -56,4 +56,4 @@ CMD /tmp/startup-script.sh
 # CMD envsubst '$MYSQL_DB_NAME $MYSQL_USER $MYSQL_USER_PASSWORD' < /tmp/wp-config.php > /var/www/html/wp-config.php \
 # 	&& php-fpm7 && nginx -g "daemon off;" && tail -f /dev/null
 
-EXPOSE 9000 80
+EXPOSE 9000 80 443

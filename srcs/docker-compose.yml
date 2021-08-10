@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 443:443
+    domainname: dait-atm.fr
+    hostname: www
 #    environement: dait-atm.42.fr
 #    networks:
 #      my-network:
@@ -40,9 +42,9 @@ services:
 
 networks:
   my-network:
-    name: Inception
 #    aliases:
 #      - dait-atm.42.fr
+    name: Inception
 
 #volumes:
 #  wordpress_v

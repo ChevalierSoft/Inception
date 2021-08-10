@@ -3,7 +3,7 @@ FROM debian:buster
 #FROM alpine:3.14
 
 RUN apt-get update
-RUN	apt-get install nginx -y
+RUN	apt-get install -y nginx curl
 RUN mkdir -p /run/nginx
 RUN mkdir -p /var/www/my_server
 #RUN apt-get insatll openssl
@@ -11,6 +11,8 @@ RUN mkdir -p /var/www/my_server
 RUN rm -rf /var/cache/apk/*
 
 # nginx config
+#RUN rm -f /etc/nginx/conf.d/default.conf
+#COPY ./conf/nginx.conf /etc/nginx/sites-available/dait-atm.fr.conf
 COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./conf/index.html /var/www/my_server/
 

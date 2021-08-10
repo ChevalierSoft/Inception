@@ -12,7 +12,7 @@
 
 NAME	= Inception
 
-all:
+all: install hosts_mod
 	docker-compose -f ./srcs/docker-compose.yml build
 	docker-compose -f ./srcs/docker-compose.yml up # -d
 
@@ -20,15 +20,20 @@ $(NAME): all
 
 # install docker + dependencies
 install:
+	sudo usermod -a -G docker $(LOGNAME)
+
+hosts_mod:
+	sudo echo "# pouet pouet mon gros taxi la" >> /etc/hosts
+	sudo echo "0.0.0.0 dait-atm.42.fr" >> /etc/hosts
 
 stop:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 clean:
-	docker images prune
 	docker container prune
+	docker images prune
 	docker network prune
 
 fclean: clean
 
-.PHONY: all $(NAME) install clean fclean
+.PHONY: all $(NAME) install hosts_mod clean fclean

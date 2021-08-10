@@ -10,22 +10,20 @@ services:
       - 443:443
     domainname: dait-atm.fr
     hostname: www
-#    environement: dait-atm.42.fr
-#    networks:
-#      my-network:
-#        aliases:
-#          - dait-atm.42.fr
-    #networks:
-    #  - my-network
-    #restart: always
+    networks:
+      - my-network
 
-#  wordpress_php:
-#    container_name: wordpress
-#    build: ./wordpress
-#    ports:
-#      - 9000:80
-#    networks:
-#      - my-network
+  wordpress_php:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    ports:
+      - 9000:80
+    hostname: wordpress
+    #networks: my-network
+    depends_on:
+      - nginx
 
 #  mariadb:
 #    container_name: mariadb
@@ -42,6 +40,8 @@ services:
 
 networks:
   my-network:
+    driver: bridge
+
 #    aliases:
 #      - dait-atm.42.fr
 #    name: Inception

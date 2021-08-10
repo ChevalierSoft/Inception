@@ -11,10 +11,10 @@ services:
     domainname: dait-atm.fr
     hostname: www
 #    environement: dait-atm.42.fr
-#    networks:
-#      my-network:
-#        aliases:
-#          - dait-atm.42.fr
+    networks:
+      my-network:
+        aliases:
+          - dait-atm.42.fr
     #networks:
     #  - my-network
     #restart: always

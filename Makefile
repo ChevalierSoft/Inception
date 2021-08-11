@@ -20,7 +20,7 @@ $(NAME): all
 
 # install docker + dependencies
 install:
-	sudo mkdir -p /home/dait-atm/data
+	mkdir -p ~/data
 	#sudo usermod -a -G docker $(LOGNAME)
 
 hosts_mod:
@@ -42,5 +42,6 @@ clean:
 	sudo docker network prune
 
 fclean: clean
+	#rm -rf ~/data
 
 .PHONY: all $(NAME) install hosts_mod stop_services stop lean fclean

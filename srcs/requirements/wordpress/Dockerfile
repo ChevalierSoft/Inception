@@ -4,33 +4,21 @@ RUN mkdir -p /run/php
 RUN mkdir -p /var/www/my_server
 
 RUN	apt update
-
-#RUN	apt-get install -y php7.3
-#RUN	apt-get intsall -y php7-fpm \
-#	php7-mysqli \
-#	php7-curl \
-#	php7-json \
-#	php7-session \
-#	php7-bz2 \
-#	php7-xml \
-#	php7-iconv \
-#	php7-mbstring \
-#	php7-opcache \
-#	php7-gd \
-#	php7-zlib
-
-RUN	apt-get install -y php-fpm php-mysql
-
-RUN	apt-get install -y gettext wget vim
-
-RUN	apt-get upgrade -y
+RUN	apt-get install -y php7.3 \
+	php7.3-fpm \
+	php7.3-mysqli \
+	php7.3-curl \
+	php7.3-json \
+	php7.3-bz2 \
+	php7.3-xml \
+	php7.3-iconv \
+	php7.3-mbstring \
+	php7.3-opcache \
+	php7.3-gd \
+	php7.3-zip
+RUN apt-get install -y mariadb-client
+RUN	apt-get install -y gettext wget vim curl procps
 RUN	rm -rf /var/cache/apk/*
-
-## &&	apt-get install -y nginx \
-
-# nginx config
-COPY ./srcs/nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./srcs/index.html /var/www/my_server/
 
 #  ssl
 #RUN mkdir -p /etc/ssl/private/

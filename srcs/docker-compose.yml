@@ -13,7 +13,7 @@ services:
     networks:
       - my-network
     volumes:
-      - wordpress_volume:/var/www/my_server/
+      - /home/user42/data/wordpress:/var/www/wordpress
     #domainname: dait-atm.42.fr
     #extra_hosts:
     #  - "dait-atm.42.fr:0.0.0.0"

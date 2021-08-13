@@ -42,6 +42,6 @@ clean:
 	sudo docker network prune
 
 fclean: clean
-	#rm -rf ~/data
+	sudo rm -rf ~/data
 
 .PHONY: all $(NAME) install hosts_mod stop_services stop lean fclean

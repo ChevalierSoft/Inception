@@ -29,6 +29,8 @@ COPY ./conf/dhparam.pem /etc/ssl/certs/
 COPY ./conf/self-signed.conf /etc/nginx/snippets/self-signed.conf
 COPY ./conf/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 
+WORKDIR /var/www/wordpress
+
 ENTRYPOINT cp /index.html /var/www/wordpress && nginx -g 'daemon off;'
 
 EXPOSE 443

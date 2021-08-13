@@ -48,9 +48,9 @@ COPY ./srcs/startup-script.sh /tmp/
 
 # listen to nginx through 9000
 RUN echo "listen = 9000" >> /etc/php/7.3/fpm/pool.d/www.conf
-RUN echo "listen.owner = www-data" >> /etc/php/7.3/fpm/pool.d/www.conf
-RUN echo "listen.group = www-data" >> /etc/php/7.3/fpm/pool.d/www.conf
-RUN echo "listen.mode = 0666" >> /etc/php/7.3/fpm/pool.d/www.conf
+#RUN echo "listen.owner = nobody" >> /etc/php/7.3/fpm/pool.d/www.conf
+#RUN echo "listen.group = nobody" >> /etc/php/7.3/fpm/pool.d/www.conf
+#RUN echo "listen.mode = 0660" >> /etc/php/7.3/fpm/pool.d/www.conf
 
 CMD /tmp/startup-script.sh
 # CMD envsubst '$MYSQL_DB_NAME $MYSQL_USER $MYSQL_USER_PASSWORD' < /tmp/wp-config.php > /var/www/html/wp-config.php \

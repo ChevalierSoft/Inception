@@ -1,3 +1,5 @@
+# wordpress Dockerfile
+
 FROM debian:buster
 
 RUN mkdir -p /run/php
@@ -29,6 +31,10 @@ COPY ./srcs/dhparam.pem /etc/ssl/certs/
 COPY ./srcs/self-signed.conf /etc/nginx/snippets/self-signed.conf
 COPY ./srcs/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 
+# giving the rights to the wordpress dir
+RUN mkdir -p /var/www/wordpress
+RUN chown -R  www-data:www-data /var/www/wordpress/
+RUN chmod 777 /var/www/wordpress/
 # wordpress
 # COPY ./srcs/wordpress/ /var/www/html/
 
@@ -39,6 +45,12 @@ RUN mv /wordpress/ /var/www/html/
 COPY ./srcs/wp-config.php /tmp/
 COPY ./srcs/oui.php /var/www/html/
 COPY ./srcs/startup-script.sh /tmp/
+
+# listen to nginx through 9000
+RUN echo "listen = 9000" >> /etc/php/7.3/fpm/pool.d/www.conf
+RUN echo "listen.owner = www-data" >> /etc/php/7.3/fpm/pool.d/www.conf
+RUN echo "listen.group = www-data" >> /etc/php/7.3/fpm/pool.d/www.conf
+RUN echo "listen.mode = 0660" >> /etc/php/7.3/fpm/pool.d/www.conf
 
 CMD /tmp/startup-script.sh
 # CMD envsubst '$MYSQL_DB_NAME $MYSQL_USER $MYSQL_USER_PASSWORD' < /tmp/wp-config.php > /var/www/html/wp-config.php \

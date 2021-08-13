@@ -3,6 +3,8 @@ services:
 
   nginx:
     container_name: nginx
+    depends_on:
+      - wordpress-php
     image: nginx
     build:
       context: requirements/nginx
@@ -18,8 +20,10 @@ services:
     #extra_hosts:
     #  - "dait-atm.42.fr:0.0.0.0"
 
-  wordpress_php:
+  wordpress-php:
     container_name: wordpress
+    #depends_on:
+    #  - nginx
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
@@ -40,8 +44,6 @@ services:
     hostname: wordpress
     networks:
       - my-network
-    depends_on:
-      - nginx
     volumes:
       - /home/user42/data/wordpress:/var/www/html
 

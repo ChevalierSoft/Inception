@@ -5,16 +5,16 @@ FROM debian:buster
 RUN apt-get update
 RUN	apt-get install -y nginx curl
 #RUN mkdir -p /var/www/my_server
-#RUN apt-get insatll openssl
-#RUN apt-get insatll openssh-server -y
 RUN rm -rf /var/cache/apk/*
 
-RUN mkdir -p /run/nginx
+# preparing directories for wordpress
 RUN mkdir -p /var/www/wordpress
+RUN chown -R  www-data:www-data /var/www/wordpress/
+RUN chmod 777 /var/www/wordpress/
+#  if using alpine
+#RUN mkdir -p /run/nginx
 
 # nginx config
-#RUN rm -f /etc/nginx/conf.d/default.conf
-#COPY ./conf/nginx.conf /etc/nginx/sites-available/dait-atm.fr.conf
 COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./conf/index.html .
 
@@ -28,8 +28,6 @@ COPY ./conf/dhparam.pem /etc/ssl/certs/
 
 COPY ./conf/self-signed.conf /etc/nginx/snippets/self-signed.conf
 COPY ./conf/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
-
-#CMD nginx -g 'daemon off;'
 
 ENTRYPOINT cp /index.html /var/www/wordpress && nginx -g 'daemon off;'
 

@@ -34,13 +34,13 @@ COPY ./srcs/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 # giving the rights to the wordpress dir
 RUN mkdir -p /var/www/wordpress
 RUN chown -R  www-data:www-data /var/www/wordpress/
-RUN chmod 777 /var/www/wordpress/
 # wordpress
 # COPY ./srcs/wordpress/ /var/www/html/
 
 RUN wget https://wordpress.org/wordpress-4.8.15.tar.gz
 RUN tar -xf wordpress-4.8.15.tar.gz
 RUN mv /wordpress/ /var/www/html/
+RUN chmod -R 777 /var/www/wordpress/
 
 COPY ./srcs/wp-config.php /tmp/
 COPY ./srcs/oui.php /var/www/html/

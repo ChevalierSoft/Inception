@@ -47,20 +47,20 @@ services:
     volumes:
       - /home/user42/data/wordpress:/var/www/html
 
-#  mariadb:
-#    container_name: mariadb
-#    image: mariadb
-#    build:
-#      context: requirements/mariadb
-#      dockerfile: Dockerfile
-#    ports:
-#      - 3306:3306
-#    networks:
-#      - my-network
-#    env_file:
-#      - mariadb.env
-#    volumes:
-#      - /home/dait-atm/data/mariadb:/var/lib/mysql
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    build:
+      context: requirements/mariadb
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
+    networks:
+      - my-network
+    env_file:
+      - mariadb.env
+    volumes:
+      - /home/dait-atm/data/mariadb:/var/lib/mysql
 
 networks:
   my-network:

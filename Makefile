@@ -46,6 +46,7 @@ clean:
 	sudo docker container prune
 	sudo docker images prune
 	sudo docker network prune
+	sudo docker volume prune
 
 fclean: clean
 	sudo rm -rf ~/data

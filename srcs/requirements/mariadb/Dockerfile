@@ -28,11 +28,3 @@ COPY srcs/mariadb-server-enanced.cnf /tmp/mariadb-server-enanced.cnf
 ENTRYPOINT ["/mysql_script.sh"]
 
 EXPOSE 3306
-
-# Secret
-ENV MYSQL_DB_NAME=wordpress
-ENV MYSQL_USER=dait-atm
-ENV MYSQL_USER_PASSWORD=password
-ENV MYSQL_ADMIN=admin
-ENV MYSQL_ADMIN_PASSWORD=toor
-

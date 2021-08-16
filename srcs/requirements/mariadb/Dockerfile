@@ -22,7 +22,7 @@ RUN touch /run/openrc/softlevel
 COPY srcs/mysql_script.sh /
 COPY srcs/mysql_script_async.sh /
 # COPY srcs/dump.sql /tmp
-COPY srcs/new_super_mario_sql.sql /tmp
+COPY srcs/Inception.sql /tmp
 COPY srcs/mysql.sql /tmp
 COPY srcs/mariadb-server-enanced.cnf /tmp/mariadb-server-enanced.cnf
 

@@ -9,12 +9,12 @@ done
 # translate every $var into their values
 envsubst < /tmp/mysql.sql > tmp/mysql_ready.sql
 
-# import db setup
+# import db users
 mysql -u root < /tmp/mysql_ready.sql
+# import db dump
+mysql -u root wordpress < /tmp/Inception.sql
 
-#mysql -u root wordpress < /tmp/new_super_mario_sql.sql
-
-mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
+mysql -u root -e "ALTER USER '$MYSQL_ADMIN'@'localhost' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
 
 # no need for them anymore...
 #unset MYSQL_USER_PASSWD MYSQL_ADMIN_PASSWORD

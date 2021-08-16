@@ -1,6 +1,6 @@
 # mysql Dockerfile
 
-FROM alpine:latest
+FROM alpine:3.13
 
 RUN apk update
 RUN apk add mariadb

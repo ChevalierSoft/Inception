@@ -55,4 +55,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all $(NAME) install hosts_mod stop_services stop lean fclean
+.PHONY: all $(NAME) install hosts_mod stop_services stop lean fclean re

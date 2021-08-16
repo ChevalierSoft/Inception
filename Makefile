@@ -12,8 +12,9 @@
 
 NAME	= Inception
 
-all: stop_services hosts_mod
+all: hosts_mod
 	mkdir -p ~/data
+	chmod 770 ~/data
 	sudo docker-compose -f ./srcs/docker-compose.yml build
 	sudo docker-compose -f ./srcs/docker-compose.yml up # -d
 
@@ -36,19 +37,21 @@ hosts_mod:
 	sudo echo "0.0.0.0 www.dait-atm.42.fr" >> /etc/hosts
 
 stop_services :
-	#service nginx stop
-	#service mysql stop
+	service nginx stop
+	service mysql stop
 
 stop:
 	sudo docker-compose -f ./srcs/docker-compose.yml down
 
 clean:
 	sudo docker container prune
-	sudo docker images prune
+	sudo docker image prune
 	sudo docker network prune
 	sudo docker volume prune
 
 fclean: clean
 	sudo rm -rf ~/data
+
+re: fclean all
 
 .PHONY: all $(NAME) install hosts_mod stop_services stop lean fclean

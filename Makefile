@@ -13,8 +13,9 @@
 NAME	= Inception
 
 all: hosts_mod
-	mkdir -p ~/data
-	chmod 770 ~/data
+	sudo mkdir -p /home/dait-atm/data
+	sudo chown -R $(LOGNAME):docker /home/dait-atm
+	#chmod 770 /home/dait-atm/data
 	sudo docker-compose -f ./srcs/docker-compose.yml build
 	sudo docker-compose -f ./srcs/docker-compose.yml up # -d
 
@@ -50,7 +51,7 @@ clean:
 	sudo docker image prune
 
 fclean: clean
-	sudo rm -rf ~/data
+	sudo rm -rf /home/dait-atm
 
 re: fclean all
 

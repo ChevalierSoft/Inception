@@ -15,7 +15,7 @@ services:
     networks:
       - my-network
     volumes:
-      - /home/user42/data/wordpress:/var/www/wordpress
+      - /home/dait-atm/data/wordpress:/var/www/wordpress
     #domainname: dait-atm.42.fr
     #extra_hosts:
     #  - "dait-atm.42.fr:0.0.0.0"
@@ -35,7 +35,7 @@ services:
     networks:
       - my-network
     volumes:
-      - /home/user42/data/wordpress:/var/www/html
+      - /home/dait-atm/data/wordpress:/var/www/html
 
   mariadb:
     container_name: mariadb
@@ -50,7 +50,7 @@ services:
     env_file:
       - mariadb.env
     volumes:
-      - /home/user42/data/mariadb:/var/lib/mysql
+      - /home/dait-atm/data/mariadb:/var/lib/mysql
 
 networks:
   my-network:

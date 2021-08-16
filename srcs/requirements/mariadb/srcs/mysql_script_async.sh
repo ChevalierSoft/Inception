@@ -11,7 +11,9 @@ envsubst < /tmp/mysql.sql > tmp/mysql_ready.sql
 
 # import db setup
 mysql -u root < /tmp/mysql_ready.sql
-mysql -u root wordpress < /tmp/new_super_mario_sql.sql
+
+#mysql -u root wordpress < /tmp/new_super_mario_sql.sql
+
 mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
 
 # no need for them anymore...

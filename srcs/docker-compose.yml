@@ -29,16 +29,6 @@ services:
       dockerfile: Dockerfile
     env_file:
       - wordpress.env
-    #environment:
-    #  WP_ADMIN:             "{WP_ADMIN}"
-    #  WP_ADMIN_PASSWORD:    "{WP_ADMIN_PASSWORD}"
-    #  WP_USER:              "{WP_USER}"
-    #  WP_USER_PASSWORD:     "{WP_USER_PASSWORD}"
-    #  MYSQL_DB_NAME:        "{MYSQL_DB_NAME}"
-    #  MYSQL_USER:           "{MYSQL_USER}"
-    #  MYSQL_USER_PASSWORD:  "{MYSQL_USER_PASSWORD}"
-    #  MYSQL_ADMIN:          "{MYSQL_ADMIN}"
-    #  MYSQL_ADMIN_PASSWORD: "{MYSQL_ADMIN_PASSWORD}"
     ports:
       - 9000:9000
     hostname: wordpress

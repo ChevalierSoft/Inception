@@ -23,14 +23,13 @@
 define( 'DB_NAME', '$MYSQL_DB_NAME' );
 
 /** MySQL database username */
-define( 'DB_USER', 'admin' );
-// define( 'DB_USER', '$MYSQL_USER' );
+define( 'DB_USER', '$MYSQL_USER' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'toor' );
+define( 'DB_PASSWORD', '$MYSQL_USER_PASSWORD' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql-service' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

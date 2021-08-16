@@ -6,3 +6,7 @@ log-bin=bin_log
 log-basename=mysql_log
 # init mysql_log.log file by checking the logs
 general_log
+# use 3306 port
+port=3306
+# listen on localhost
+bind=0.0.0.0

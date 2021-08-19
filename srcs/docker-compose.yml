@@ -46,23 +46,15 @@ services:
       context: requirements/mariadb
       dockerfile: Dockerfile
     restart: always
+    env_file:
+      - mariadb.env
     ports:
       - 3306:3306
     networks:
       - my-network
-    env_file:
-      - mariadb.env
     volumes:
       - /home/dait-atm/data/mariadb:/var/lib/mysql
 
 networks:
   my-network:
     driver: bridge
-
-volumes:
-  wordpress_volume:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/user42/data/wordpress'

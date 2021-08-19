@@ -17,6 +17,7 @@ all: hosts_mod
 	sudo mkdir -p /home/dait-atm/data
 	sudo chown -R $(LOGNAME):docker /home/dait-atm
 	sudo docker-compose -f ./srcs/docker-compose.yml build
+	sudo chmod -R 777 /home/dait-atm/data
 	sudo docker-compose -f ./srcs/docker-compose.yml up -d
 
 $(NAME): all
@@ -27,21 +28,12 @@ update:
 
 # install docker + dependencies
 install:
+	sudo rm -f /etc/apt/source.list.d/docker.list
 	sudo apt-get update
 	curl -fsSL https://get.docker.com -o get-docker.sh
 	sudo sh get-docker.sh
-	#sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
-	#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-	#echo \
-  #"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-	#sudo apt-get update
-	#sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-	#sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
 uninstall_docker:
-	#sudo apt-get remove docker docker-engine docker.io containerd runc
 	sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
 	sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
 
@@ -58,7 +50,7 @@ stop_services :
 stop:
 	sudo docker-compose -f ./srcs/docker-compose.yml down
 
-clean:
+clean: stop
 	sudo docker container prune
 	sudo docker network prune
 	sudo docker volume prune

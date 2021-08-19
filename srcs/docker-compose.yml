@@ -1,10 +1,8 @@
 version: "3.5"
 services:
 
-
   mariadb:
     container_name: mariadb
-    #image: mariadb
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
@@ -20,17 +18,11 @@ services:
       - type: volume
         source: /home/dait-atm/data/mariadb
         target: /var/lib/mysql
-        #volume:
-        #  nocopy: true
-    #volumes:
-     # - db:/var/lib/mysql
-      #- /home/dait-atm/data/mariadb:/var/lib/mysql
 
   nginx:
     container_name: nginx
     depends_on:
       - wordpress-php
-    #image: nginx
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
@@ -42,15 +34,11 @@ services:
       - my-network
     volumes:
       - /home/dait-atm/data/wordpress:/var/www/wordpress
-    #domainname: dait-atm.42.fr
-    #extra_hosts:
-    #  - "dait-atm.42.fr:0.0.0.0"
 
   wordpress-php:
     container_name: wordpress-php
     depends_on:
       - mariadb
-    #image: wordpress
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
@@ -66,12 +54,6 @@ services:
       - type: volume
         source: /home/dait-atm/data/wordpress
         target: /var/www/html
-        #volume:
-        #  nocopy: true
-
-      #- wordpress-v:/var/www/html
-      #- /home/dait-atm/data/wordpress:/var/www/html
-
 
 networks:
   my-network:

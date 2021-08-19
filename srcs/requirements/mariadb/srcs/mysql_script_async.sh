@@ -16,7 +16,7 @@ mysql -u root wordpress < /tmp/Inception.sql
 
 mysql -u root -e "ALTER USER '$MYSQL_ADMIN'@'localhost' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
 
-mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
+mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
 
 tail -f /var/lib/mysql/mysql_log.log &
 tail -f /var/lib/mysql/mysql_log.err &

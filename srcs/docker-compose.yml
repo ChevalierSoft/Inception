@@ -1,15 +1,40 @@
 version: "3.5"
 services:
 
+
+  mariadb:
+    container_name: mariadb
+    #image: mariadb
+    build:
+      context: requirements/mariadb
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - mariadb.env
+    ports:
+      - 3306:3306
+    hostname: mariadb
+    networks:
+      - my-network
+    volumes:
+      - type: volume
+        source: /home/dait-atm/data/mariadb
+        target: /var/lib/mysql
+        #volume:
+        #  nocopy: true
+    #volumes:
+     # - db:/var/lib/mysql
+      #- /home/dait-atm/data/mariadb:/var/lib/mysql
+
   nginx:
     container_name: nginx
     depends_on:
       - wordpress-php
-    image: nginx
+    #image: nginx
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
-    restart: always
+    restart: unless-stopped
     ports:
       - 443:443
     hostname: www
@@ -25,10 +50,11 @@ services:
     container_name: wordpress-php
     depends_on:
       - mariadb
+    #image: wordpress
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-    restart: always
+    restart: unless-stopped
     env_file:
       - wordpress.env
     ports:
@@ -37,24 +63,36 @@ services:
     networks:
       - my-network
     volumes:
-      - /home/dait-atm/data/wordpress:/var/www/html
+      - type: volume
+        source: /home/dait-atm/data/wordpress
+        target: /var/www/html
+        #volume:
+        #  nocopy: true
 
-  mariadb:
-    container_name: mariadb
-    image: mariadb
-    build:
-      context: requirements/mariadb
-      dockerfile: Dockerfile
-    restart: always
-    env_file:
-      - mariadb.env
-    ports:
-      - 3306:3306
-    networks:
-      - my-network
-    volumes:
-      - /home/dait-atm/data/mariadb:/var/lib/mysql
+      #- wordpress-v:/var/www/html
+      #- /home/dait-atm/data/wordpress:/var/www/html
+
 
 networks:
   my-network:
     driver: bridge
+
+volumes:
+  mariadb-volume:
+  wordpress-volume:
+
+#volumes:
+#  db:
+#    name: mariadb-volume
+#    driver: local
+#    driver_opts:
+#      type: 'none'
+#      device: '/home/dait-atm/data/mariadb'
+#      o: 'bind'
+#  wordpress-v:
+#    name: wordpress-volume
+#    driver: local
+#    driver_opts:
+#      type: 'none'
+#      device: '/home/dait-atm/data/wordpress'
+#      o: 'bind'

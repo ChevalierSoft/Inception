@@ -13,29 +13,43 @@
 NAME	= Inception
 
 all: hosts_mod
+	sudo usermod -a -G docker $(LOGNAME)
 	sudo mkdir -p /home/dait-atm/data
 	sudo chown -R $(LOGNAME):docker /home/dait-atm
-	#chmod 770 /home/dait-atm/data
 	sudo docker-compose -f ./srcs/docker-compose.yml build
-	sudo docker-compose -f ./srcs/docker-compose.yml up # -d
+	sudo docker-compose -f ./srcs/docker-compose.yml up -d
 
 $(NAME): all
 
+update:
+	sudo apt-get update
+	sudo apt-get upgrade -y
+
 # install docker + dependencies
 install:
-	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-	echo \
-	  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-	    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 	sudo apt-get update
-	sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
-	#sudo usermod -a -G docker $(LOGNAME)
+	curl -fsSL https://get.docker.com -o get-docker.sh
+	sudo sh get-docker.sh
+	#sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
+	#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+	#echo \
+  #"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	#sudo apt-get update
+	#sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+	#sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
+
+uninstall_docker:
+	sudo apt-get remove docker docker-engine docker.io containerd runc
+	#sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
+	#sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
 
 hosts_mod:
-	sudo chown $(LOGNAME) /etc/hosts
 	sudo echo "# pouet pouet mon gros taxi la" >> /etc/hosts
 	sudo echo "0.0.0.0 dait-atm.42.fr" >> /etc/hosts
 	sudo echo "0.0.0.0 www.dait-atm.42.fr" >> /etc/hosts
+	#sudo chown $(LOGNAME) /etc/hosts
 
 stop_services :
 	service nginx stop

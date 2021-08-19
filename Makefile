@@ -41,9 +41,9 @@ install:
 	#sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
 uninstall_docker:
-	sudo apt-get remove docker docker-engine docker.io containerd runc
-	#sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
-	#sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
+	#sudo apt-get remove docker docker-engine docker.io containerd runc
+	sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
+	sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
 
 hosts_mod:
 	sudo echo "# pouet pouet mon gros taxi la" >> /etc/hosts

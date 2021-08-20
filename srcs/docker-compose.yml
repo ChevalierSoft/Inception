@@ -67,6 +67,23 @@ services:
         source: /home/dait-atm/data/mariadb
         target: /var/lib/mysql
 
+  ftps:
+    container_name: ftps
+    depends_on:
+      - nginx
+    build:
+      context: requirements/ftps
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ftps.env
+    ports:
+      - 0.0.0.0:20:20
+      - 0.0.0.0:21:21
+      - 30000:30000
+      - 30001:30001
+    volumes:
+      - /home/dait-atm/data/wordpress:/home/dait-atm/
 
 networks:
   my-network:

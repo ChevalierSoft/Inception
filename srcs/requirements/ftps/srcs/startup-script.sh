@@ -12,6 +12,8 @@ echo "$FTPS_USER" > /etc/vsftpd/chroot.list
 touch /var/log/vsftpd.log
 tail -f /var/log/vsftpd.log &
 
+chown dait-atm /home/dait-atm
+
 # tail -f /dev/null
 
 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf

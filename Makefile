@@ -13,6 +13,7 @@
 NAME	= Inception
 
 all: hosts_mod
+	sudo chmod -R 755 .
 	sudo usermod -a -G docker $(LOGNAME)
 	sudo mkdir -p /home/dait-atm/data
 	sudo chown -R $(LOGNAME):docker /home/dait-atm
